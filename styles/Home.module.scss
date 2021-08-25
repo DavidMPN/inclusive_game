@@ -1,0 +1,125 @@
+.container {
+  min-height: 100vh;
+  height: 100vh;
+
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  padding: 3rem;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+  }
+
+  main {
+    margin: 2rem 0;
+  
+    flex: 1;
+  
+    display: flex;
+    flex-direction: column;
+
+    .options {
+      display: flex;
+      flex-direction: column;
+
+      .option {
+        padding: 1rem 2rem;
+        cursor: pointer;
+        height: 4.5rem;
+      
+        background-color: white;
+      
+        transition: border 100ms;
+
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+
+        // font-weight: 300;
+
+        input[type="radio"] {
+          display: none;
+        }
+
+        span {
+          padding-right: 2rem;
+          margin-right: 2rem;
+          height: 100%;
+          border-right: 1px solid #ccc;
+        }
+      }
+      
+      .option:hover {
+        border: 2px solid var(--checked-color);
+      }
+      
+      .active {
+        background-color: var(--checked-color);
+        border: 2px solid var(--checked-color);
+        color: white;
+
+        span {
+          border-color: white;
+        }
+      }
+    }
+
+    .question,
+    .option {
+      border: 2px solid #ddd;
+      border-radius: 1rem;
+      margin: .5rem 0;
+    }    
+
+    .question {
+      padding: 2rem 3rem;
+      font-size: 1.7rem;
+      font-weight: 300;
+      text-align: justify;
+    }
+    
+  }
+  
+  .timer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    h3 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .bartimercontainer {
+      height: 10px;
+      border-radius: 5px;
+      flex: 1;
+      margin-right: 1.5rem;
+      border: 1px solid #ccc;
+
+      .bartimer {
+        height: 100%;
+        border-radius: 5px;
+        background-color: var(--timer-color);
+
+        transition: width 1s linear;
+      }
+    }
+  } 
+}

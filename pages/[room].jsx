@@ -1,6 +1,16 @@
 import styles from '../styles/Home.module.scss';
-import { FiSettings } from 'react-icons/fi';
+import { FiBluetooth, FiSettings } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
+
+function SettingsMenuToggle() {
+  let x = document.getElementById("inc_menu");
+
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
 
 export default function Home({ room }) {
   const initialTimer = 90;
@@ -19,8 +29,11 @@ export default function Home({ room }) {
       <header>
         <h1>4ALL</h1>
 
-        <button><FiSettings size={35} color="#777" /></button>
+        <button onClick = {SettingsMenuToggle}><FiSettings size={35} color="#777"/></button>
+
       </header>
+
+      <div className = {styles.inclusive_menu} id = "inc_menu"></div>
 
       <main>
         <div className={styles.question}>
@@ -31,7 +44,7 @@ export default function Home({ room }) {
           Curabitur sodales nisi eu purus eleifend, eget finibus purus posuere. 
           Suspendisse vehicula iaculis volutpat. Suspendisse bibendum ipsum at orci sodales volutpat.
         </div>
-        
+ 
         <form className={styles.options}>
           <label className={`${styles.option} ${checkedOption == "A" && styles.active}`}>
             <span>A</span>

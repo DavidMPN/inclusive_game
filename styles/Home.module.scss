@@ -96,6 +96,18 @@
     
   }
   
+  .inclusive_menu{
+    position: fixed;
+    height: 500px;
+    width: 500px;
+    background-color:lightgray;
+    z-index: 100;
+    justify-self: center;
+    align-self: center;
+    border-radius: 30px;
+    display: none;
+  }
+
   .timer {
     display: flex;
     width: 100%;

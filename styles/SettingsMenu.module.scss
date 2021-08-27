@@ -1,0 +1,21 @@
+.inclusive_menu{
+    height: 500px;
+    width: 500px;
+    background-color:whitesmoke;
+
+    border-radius: 30px;
+
+}
+
+.blur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: black, $alpha: 0.3);
+    display: none;
+}

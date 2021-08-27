@@ -1,0 +1,26 @@
+.timer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    h3 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .bartimercontainer {
+      height: 10px;
+      border-radius: 5px;
+      flex: 1;
+      margin-right: 1.5rem;
+      border: 1px solid #ccc;
+
+      .bartimer {
+        height: 100%;
+        border-radius: 5px;
+        background-color: var(--timer-color);
+
+        transition: width 1s linear;
+      }
+    }
+  } 

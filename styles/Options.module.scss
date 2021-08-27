@@ -1,0 +1,49 @@
+.options {
+    display: flex;
+    flex-direction: column;
+
+    .option {
+      padding: 1rem 2rem;
+      cursor: pointer;
+      height: 4.5rem;
+    
+      background-color: white;
+    
+      transition: border 100ms;
+
+      border: 2px solid #ddd;
+      border-radius: 1rem;
+      margin: .5rem 0;
+
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+
+      // font-weight: 300;
+
+      input[type="radio"] {
+        display: none;
+      }
+
+      span {
+        padding-right: 2rem;
+        margin-right: 2rem;
+        height: 100%;
+        border-right: 1px solid #ccc;
+      }
+    }
+    
+    .option:hover {
+      border: 2px solid var(--checked-color);
+    }
+    
+    .active {
+      background-color: var(--checked-color);
+      border: 2px solid var(--checked-color);
+      color: white;
+
+      span {
+        border-color: white;
+      }
+    }
+  }

@@ -13,7 +13,7 @@ export default function handler(req, res) {
     const player = { id: id, name: playername, rightAnswers: 0, isReady: false};
     players.push(player)
 
-    room={name = name, players = players, dono = nomeplayer, isStarted = isStarted, time = time, questions = questions, players = players}
+    room={name: name, players: players, dono: nomeplayer, isStarted: isStarted, time: time, questions: questions, players: players}
     const roomFounded = rooms.find(r => r.name == name);
     if(roomFounded){
         rooms.rooms.add(room)

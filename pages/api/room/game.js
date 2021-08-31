@@ -9,9 +9,9 @@ export default withSession(async (req, res) => {
     if(room) {
         const player = req.session.get("player");
         const auth   = room.players.find(p => p.id == player.id);
-    
+
         if(player && auth) {
-            return res.json({ status: true, players: room.players, isStarted: room.isStarted });
+            return res.json({ status: true, players: room.players, isStarted: room.isStarted, curQuestion: room.questions[room.curQuestion] });
         }
     }
 

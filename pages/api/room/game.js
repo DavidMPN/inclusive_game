@@ -11,7 +11,7 @@ export default withSession(async (req, res) => {
         const auth   = room.players.find(p => p.id == player.id);
 
         if(player && auth) {
-            return res.json({ status: true, players: room.players, isStarted: room.isStarted, curQuestion: room.questions[room.curQuestion] });
+            return res.json({ status: true, players: room.players, isStarted: room.isStarted, curQuestion: room.questions[room.curQuestion], owner: player.id == room.owner });
         }
     }
 

@@ -1,9 +1,8 @@
-import { useRouter } from 'next/dist/client/router';
-import QuestionPage from '../layouts/QuestionPage';
 import axios from 'axios';
 import useSWR from 'swr';
 
-import styles from "../styles/Wait.module.scss";
+import QuestionPage from '../layouts/QuestionPage';
+import WaitPage from '../layouts/WaitPage';
 
 function usePlayer(room) {
   const { data, error } = useSWR('api/room/game', async (url) => {
@@ -18,16 +17,11 @@ function usePlayer(room) {
   }
 }
 
-export default function Room() {
-
-  const router = useRouter();
-  const { room } = router.query;
+export default function Room({ room }) {
   const { data, isLoading } = usePlayer(room);
   
-  console.log(data);
-
   if(isLoading) {
-    return <h1>Carregando...</h1>
+    return <h1 style={{textAlign: "center"}}>Carregando...</h1>
   }
 
   if(data.status) {
@@ -38,22 +32,17 @@ export default function Room() {
     }
 
     return (
-      // <WaitPage>
-      <>
-        <button 
-          className={styles.startBtn} 
-          onClick={ async () => { 
-            await axios.post("/api/room/start", { roomname: room });
-          }}
-        >
-          Começar
-        </button>
-        <ul className={styles.container}>
-          {data.players.map(player => <li key={player.id} className={styles.player}>{player.name}</li>)}
-        </ul>
-      </>
+      <WaitPage data={data} room={room} />
     );
   }
 
-  return <h1>Você não pode entrar nessa sala</h1>
+  return <h1 style={{textAlign: "center"}}>Você não pode entrar nessa sala</h1>
+}
+
+export async function getServerSideProps({ params }) {
+  return {
+    props: {
+      room: params.room
+    }, // will be passed to the page component as props
+  }
 }

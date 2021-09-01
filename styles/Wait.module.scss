@@ -1,29 +1,74 @@
-.container {
-
+.container{
     display: flex;
-    width: 100%;
-    max-width: 1400px;
+    min-height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
 
-    flex-wrap: wrap;
 
-    .player {
-        background-color: #bbb;
+.players_list{
+
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    width: 800px;
+    min-height: 600px;
+    .h1{
+
+    }
+
+    .players {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+        padding: 0;
+        .player {
+            width: 80%;
+            background-color: #bbb;
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+            height: 30%;
+            margin-bottom: 10px;
+            border-radius: 1rem;
+        }
+    }
+
+}
+
+.settings{
+    margin-top: 10px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .game_time{
+        margin: 10px;
+        display: flex;
+        border: 1px solid #ddd;
+        justify-content: space-between;
+        color: black;
+        width: 200px;
+        border-radius: 6px;
+        height: 60px;
+        background-color: white;
+    
+    }
+
+    .startBtn {
+        margin-top: 10px;
+        background-color: var(--checked-color);
         font-size: 1.5rem;
         color: white;
         font-weight: 600;
         text-align: center;
-        width: 30%;
         padding: 1rem 2rem;
+        width: 200px;
+        height: 60px;
         border-radius: 1rem;
     }
-}
 
-.startBtn {
-    background-color: var(--checked-color);
-    font-size: 1.5rem;
-    color: white;
-    font-weight: 600;
-    text-align: center;
-    padding: 1rem 2rem;
-    border-radius: 1rem;
 }

@@ -7,7 +7,7 @@ import { withIronSession } from 'next-iron-session';
 export default withSession(async (req, res) => {
     const { playername, roomname } = req.body;
 
-    const roomIndex = rooms.findId(r => r.name == roomname);
+    const roomIndex = rooms.findIndex(r => r.name == roomname);
 
     if(roomIndex != -1) {
         const id = uuid();

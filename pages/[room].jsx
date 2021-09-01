@@ -1,31 +1,42 @@
-import styles from '../styles/Home.module.scss';
+import axios from 'axios';
+import useSWR from 'swr';
 
-import { FiBluetooth, FiSettings } from 'react-icons/fi';
-import { useEffect, useState } from 'react';
+import QuestionPage from '../layouts/QuestionPage';
+import WaitPage from '../layouts/WaitPage';
 
-import Question from '../components/Question';
-import Options from '../components/Options';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import SettingsMenu from '../components/SettingsMenu'
+function usePlayer(room) {
+  const { data, error } = useSWR('api/room/game', async (url) => {
+    const response = await axios.post(url, { roomname: room })
+    return response.data;
+  }, { refreshInterval: 1000 });
 
-export default function Home({ room }) {
+  return {
+    data: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 
-  return (
-    <div className={styles.container}>
+export default function Room({ room }) {
+  const { data, isLoading } = usePlayer(room);
+  
+  if(isLoading) {
+    return <h1 style={{textAlign: "center"}}>Carregando...</h1>
+  }
 
-      <SettingsMenu/>
+  if(data.status) {
+    if(data.isStarted) {
+      return (
+        <QuestionPage question={data.curQuestion} />
+      )    
+    }
 
-      <Header/>
+    return (
+      <WaitPage data={data} room={room} />
+    );
+  }
 
-      <main>
-        <Question/>
-        <Options/>
-      </main>
-    
-      <Footer/>
-    </div>
-  )
+  return <h1 style={{textAlign: "center"}}>Você não pode entrar nessa sala</h1>
 }
 
 export async function getServerSideProps({ params }) {

@@ -15,9 +15,11 @@ function Header(){
     return (
         <header className = {styles.header_box}>
             <h1>4ALL</h1>
-            <button onClick = {SettingsMenuToggle}><FiSettings size={35} color="#777"/></button>
+            <button onClick = {SettingsMenuToggle} title="Configurações">
+                <FiSettings size={35} color="#777"/>
+            </button>
         </header>
     )
 }
 
-export default Header
+export default Header;

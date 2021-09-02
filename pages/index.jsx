@@ -6,8 +6,10 @@ import NavBar from "../components/NavBar";
 import { useState } from "react";
 
 export default function Home() {
+
     const [ roomname, setRoomname ]     = useState("");
     const [ playername, setPlayername ] = useState("");
+
 
     const router = useRouter();
 
@@ -15,7 +17,7 @@ export default function Home() {
         const res = await axios.post("api/room/join", data);
         console.log(res, data);
 
-        if(res.data.join) {
+        if (res.data.join) {
             router.push(`/${data.roomname}`);
         }
     }
@@ -24,15 +26,16 @@ export default function Home() {
         const res = await axios.post("api/room/create", data);
         console.log(res, data);
 
-        if(res.data.created) {
+        if (res.data.created) {
             router.push(`/${data.roomname}`);
         }
     }
 
     return (
         <div className={styles.container}>
-            <NavBar/>
-            <div className = {styles.formularios}>
+            <NavBar />
+            <div className={styles.formularios}>
+
 
                 <form className={styles.form} onSubmit={e => e.preventDefault()}>
                     <input 
@@ -53,6 +56,7 @@ export default function Home() {
                         <button onClick={async () => await submitCreate({ roomname, playername })}>Criar</button>
                     </div>
                 </form>
+
             </div>
         </div>
     )

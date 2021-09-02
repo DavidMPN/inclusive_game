@@ -35,6 +35,10 @@
             max-width: 400px;
             width: 100%;
         
+            .buttonContainer {
+                display: flex;
+                justify-content: space-between;
+            }
 
             input{
                 border: 2px solid #ddd;
@@ -42,9 +46,15 @@
                 margin: .5rem 0;
               
                 font-size: 1.5rem;
-                font-weight: 300;
+                font-weight: 600;
+                color: #777;
                 text-align: justify;
                 padding: 1rem 2rem;
+            }
+
+            input::placeholder {
+                font-weight: 500;
+                color: #999;
             }
 
             input:focus {
@@ -54,6 +64,8 @@
             button{
                 padding: 1rem 2rem;
                 cursor: pointer;
+
+                width: calc(50% - .5rem);
               
                 border-radius: 1rem;
                 margin: .5rem 0;

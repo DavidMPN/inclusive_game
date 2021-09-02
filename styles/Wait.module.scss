@@ -2,18 +2,92 @@
     display: flex;
     min-height: 100vh;
     width: 100vw;
-    justify-content: center;
     align-items: center; 
     flex-direction: column;
+
+    .navbar{
+        position: sticky;
+        top:1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 2rem 0 0;
+    }
+
+
+    .copyContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0;
+    }
+
+    .copyContainer > * {
+        margin: 0 .5rem;
+    }
+
+
+    .settings{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .game_time, .startBtn {
+            display: flex;
+            align-items: center;
+            width: 200px;
+            height: 60px;
+            
+            border: 2px solid #ddd;
+            border-radius: 1rem;
+            margin: .5rem;
+            
+            text-align: justify;
+            
+            button {
+                padding: 1rem;
+                height: 100%;
+            }
+
+            h3 {
+                border-left: 2px solid #ddd;
+                border-right: 2px solid #ddd;
+                height: 100%;
+                padding: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .game_time {
+            color: #777;
+            font-size: 1.3rem;
+            font-weight: 600;
+            justify-content: space-between;
+        }
+
+        .startBtn {
+            background-color: var(--checked-color);
+            font-size: 1.5rem;
+            color: white;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+    }
 }
 
 
 .players_list{
-
-    border: 2px solid #ddd;
+    margin: 1rem 0;
     border-radius: 6px;
-    width: 800px;
-    min-height: 600px;
+    max-width: 800px;
+    width: 100%;
+    flex: 1;
+
     .h1{
 
     }
@@ -22,53 +96,23 @@
         display: flex;
         width: 100%;
         align-items: center;
-        flex-direction: column;
-        padding: 0;
+        // flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 1rem;
         .player {
-            width: 80%;
+            // flex: 1;
+            width: 100%;
+            // min-width: calc(25% - 1rem);
             background-color: #bbb;
             color: white;
-            font-size: 3rem;
+            font-size: 2rem;
             text-align: center;
             height: 30%;
-            margin-bottom: 10px;
             border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem;
         }
-    }
-
-}
-
-.settings{
-    margin-top: 10px;
-    width: 800px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .game_time{
-        margin: 10px;
-        display: flex;
-        border: 1px solid #ddd;
-        justify-content: space-between;
-        color: black;
-        width: 200px;
-        border-radius: 6px;
-        height: 60px;
-        background-color: white;
-    
-    }
-
-    .startBtn {
-        margin-top: 10px;
-        background-color: var(--checked-color);
-        font-size: 1.5rem;
-        color: white;
-        font-weight: 600;
-        text-align: center;
-        padding: 1rem 2rem;
-        width: 200px;
-        height: 60px;
-        border-radius: 1rem;
     }
 
 }

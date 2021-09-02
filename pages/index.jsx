@@ -1,19 +1,19 @@
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-import { useForm } from "react-hook-form";
 import styles from '../styles/Index.module.scss'
 
 import NavBar from "../components/NavBar";
-import WaitPage from "../layouts/WaitPage";
+import { useState } from "react";
 
 export default function Home() {
-    const { register: registerJoin,   handleSubmit: handleSubmitJoin   } = useForm();
-    const { register: registerCreate, handleSubmit: handleSubmitCreate } = useForm();
+    const [ roomname, setRoomname ]     = useState("");
+    const [ playername, setPlayername ] = useState("");
 
     const router = useRouter();
 
     async function submitJoin(data) {
         const res = await axios.post("api/room/join", data);
+        console.log(res, data);
 
         if(res.data.join) {
             router.push(`/${data.roomname}`);
@@ -22,6 +22,7 @@ export default function Home() {
 
     async function submitCreate(data) {
         const res = await axios.post("api/room/create", data);
+        console.log(res, data);
 
         if(res.data.created) {
             router.push(`/${data.roomname}`);
@@ -33,18 +34,25 @@ export default function Home() {
             <NavBar/>
             <div className = {styles.formularios}>
 
-                <form className = {styles.form} onSubmit={handleSubmitJoin(submitJoin)}>
-                    <input type="text" {...registerJoin("roomname")}  placeholder= "Sala"/>
-                    <input type="text" {...registerJoin("playername")} placeholder= "Nome"/>
-                    <button type="submit">Entrar</button>
-                </form>
-                
-                <form className = {styles.form} onSubmit={handleSubmitCreate(submitCreate)}>
-                    <input type="text" {...registerCreate("roomname")}  placeholder= "Sala"/>
-                    <input type="text" {...registerCreate("playername")} placeholder= "Nome"/>
-                    <button type="submit">Criar</button>
-                </form>
+                <form className={styles.form} onSubmit={e => e.preventDefault()}>
+                    <input 
+                        type="text" 
+                        value={roomname} 
+                        onChange={e => setRoomname(e.target.value)} 
+                        placeholder="Digite o nome da sala"
+                    />
+                    <input 
+                        type="text" 
+                        value={playername} 
+                        onChange={e => setPlayername(e.target.value)} 
+                        placeholder="Digite o seu nome"
+                    />
 
+                    <div className={styles.buttonContainer}>
+                        <button onClick={async () => await submitJoin({ roomname, playername })}>Entrar</button>
+                        <button onClick={async () => await submitCreate({ roomname, playername })}>Criar</button>
+                    </div>
+                </form>
             </div>
         </div>
     )

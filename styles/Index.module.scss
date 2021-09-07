@@ -1,3 +1,15 @@
+.navbar{
+    position: sticky;
+    top:1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 2rem 0 0;
+}
+
 .container {
     min-height: 100vh;
     width: 100vw;
@@ -5,20 +17,7 @@
     display: flex;
     flex-direction: column;
 
-    .navbar{
-        position: sticky;
-        top:1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 60px;
-        font-size: 3rem;
-        font-weight: 700;
-        margin: 2rem 0 0;
-    }
-
     .formularios {       
-      
         padding: 3rem;
         
         display: flex;
@@ -26,7 +25,6 @@
         align-items: center;
         justify-content: center;
         flex: 1;
-
         
         .form{
             display: flex;
@@ -34,55 +32,85 @@
             margin: 3rem;
             max-width: 400px;
             width: 100%;
+
+            label {
+                position: relative;
+
+                margin: .3rem 0;
+
+
+    
+                span {
+                    display: none;
+                    background: white;
+                    font-size: 1rem;
+                    position: absolute;
+                    top: -5px;
+                    left: 15px;
+                    padding: 0 .5rem;
+                    font-weight: 400;
+                }
+    
+                input:focus + span {
+                    display: block;
+                }
+
+                input{
+                    border: 2px solid #ddd;
+                    border-radius: 1rem;
+                    margin: .5rem 0;
+
+                    width: 100%;
+                  
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    color: #777;
+                    text-align: justify;
+                    padding: 1rem 2rem;
+                }
+    
+                input::placeholder {
+                    font-weight: 500;
+                    color: #999;
+                }
+    
+                input:focus {
+                    border: 2px solid var(--checked-color);
+                }
+            }
         
             .buttonContainer {
                 display: flex;
                 justify-content: space-between;
-            }
 
-            input{
-                border: 2px solid #ddd;
-                border-radius: 1rem;
-                margin: .5rem 0;
+                button{
+                    padding: 1rem 2rem;
+                    cursor: pointer;
+    
+                    width: calc(50% - .5rem);
+                  
+                    border-radius: 1rem;
+                    margin: .5rem 0;
               
-                font-size: 1.5rem;
-                font-weight: 600;
-                color: #777;
-                text-align: justify;
-                padding: 1rem 2rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    font-size: 1.5rem;
+    
+                    background-color: var(--checked-color);
+                    border: 2px solid var(--checked-color);
+                    color: white;
+                    font-weight: 600;
+                    text-align: center;
+
+                    transition: background 200ms;
+                }
+
+                button:hover {
+                    background: #00367e;
+                }
             }
-
-            input::placeholder {
-                font-weight: 500;
-                color: #999;
-            }
-
-            input:focus {
-                border: 2px solid var(--checked-color);
-            }
-
-            button{
-                padding: 1rem 2rem;
-                cursor: pointer;
-
-                width: calc(50% - .5rem);
-              
-                border-radius: 1rem;
-                margin: .5rem 0;
-          
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                font-size: 1.5rem;
-
-                background-color: var(--checked-color);
-                border: 2px solid var(--checked-color);
-                color: white;
-                font-weight: 600;
-                text-align: center;
-            }
-           
         }
     }
 

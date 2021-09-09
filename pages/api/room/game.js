@@ -16,8 +16,6 @@ export default withSession(async (req, res) => {
         players: room.players,
         isStarted: room.isStarted,
         curQuestion: room.questions[room.curQuestion],
-        time: room.time,
-        curTime: room.curTime,
         owner: player.id == room.owner,
       });
     }

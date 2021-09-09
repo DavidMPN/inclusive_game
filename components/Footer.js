@@ -1,33 +1,34 @@
 import styles from "../styles/Footer.module.scss";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
+import axios from "axios";
 
-export default function Options({ curTime, time }) {
-  const initialTimer = time;
-  // const timer = curTime;
-  const [timer, setTimer] = useState(curTime);
-  console.log("curTime do cliente:", curTime);
+export default function Options({ room, checked }) {
+  const { data, error } = useSWR(
+    "/api/room/timer",
+    async (url) => {
+      const response = await axios.post(url, { roomname: room });
+      return response.data;
+    },
+    { refreshInterval: 3000 }
+  );
+
+  const initialTimer = data?.time;
+  const [ timer, setTimer ] = useState();
+  
   useEffect(() => {
-    // if (timer > 0) {
-    //   setTimeout(() => setTimer(timer - 1), 1000);
-    //   console.log("timer do cliente:", timer);
-    // } else {
-    //   if (curTime > 0) {
-    //     setTimer(curTime);
-    //   }
-    // }
-    if (timer == 0) {
-      if (curTime > time - 5) {
-        setTimer(curTime);
+    axios.post("/api/room/timer", { roomname: room }).then(response => setTimer(response.data.curTime));
+  }, [room]);
+
+  useEffect(() => { 
+    if (timer > 0) setTimeout(() => {setTimer(timer - 1)}, 1000);
+    else {
+      if(data?.response) {
+        axios.post("/api/room/timer", { roomname: room, response: checked }).then(res => console.log(res.data));
       }
-    } else if (curTime > 0) {
-      setTimeout(() => setTimer(timer - 1), 1000);
-      if (curTime < timer) {
-        setTimer(curTime);
-      } else {
-        setTimer(timer);
-      }
-    } else setTimer(0);
-  }, [curTime, time, timer]);
+    }
+  }, [checked, data, room, timer]);
+  
   return (
     <footer className={styles.timer}>
       <div className={styles.bartimercontainer}>

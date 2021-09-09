@@ -11,7 +11,7 @@ function usePlayer(room) {
       const response = await axios.post(url, { roomname: room });
       return response.data;
     },
-    { refreshInterval: 500 }
+    { refreshInterval: 1000 }
   );
 
   return {
@@ -33,8 +33,7 @@ export default function Room({ room }) {
       return (
         <QuestionPage
           question={data.curQuestion}
-          curTime={data.curTime}
-          time={data.time}
+          room={room}
         />
       );
     }

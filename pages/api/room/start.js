@@ -19,7 +19,7 @@ export default withSession(async (req, res) => {
           setTimeout(() => {
             rooms[roomIndex].curQuestion++;
             rooms[roomIndex].curTime = rooms[roomIndex].time;
-          }, 5000);
+          }, 5*1000);
           //console.log("time: ", rooms[roomIndex].time);
         }
         //console.log("time: ", rooms[roomIndex].curTime);/

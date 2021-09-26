@@ -1,65 +1,42 @@
+import { Server } from "socket.io";
 import rooms from "../../../data/rooms";
-import questions from "../../../data/questions";
 import { uuid } from "uuidv4";
-import withSession from "../../../lib/session";
 
-function shuffle(array) {
-  var currentIndex = array.length,
-    randomIndex;
 
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+export default function create(req, res) {
+    const { playername, roomname } = req.body;
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
+    const roomFounded = rooms.find((r) => r.name == roomname);
+    
+    if (roomFounded) {
+      console.log("criando...");
+      res?.socket?.server?.io?.emit("created", { wasCreated: false });
+    } else {
+      const id = uuid();
+      const player = {
+        id: id,
+        name: playername,
+        rightAnswers: 0,
+        isReady: false,
+      };
 
-  return array;
+      const createdRoom = {
+        name: roomname,
+        players: [player],
+        owner: id,
+        isStarted: false,
+        time: 30,
+        curTime: 30,
+        questions: [],
+        curQuestion: 0,
+      };
+
+      console.log(createdRoom);
+
+      rooms.push(createdRoom);
+      
+      res?.socket?.server?.io?.emit("created", { wasCreated: true });
+    }
+
+    res.end()
 }
-
-export default withSession(async (req, res) => {
-  const { roomname, playername } = req.body;
-  const time = 15; // modificar depois
-  const isStarted = false;
-  const curTime = time;
-  const questionslist = shuffle(questions.slice());
-  const players = [];
-
-  const id = uuid();
-  const player = { id: id, name: playername, rightAnswers: 0, isReady: false };
-  players.push(player);
-
-  const roomFounded = rooms.find((r) => r.name == roomname);
-
-  if (roomFounded) {
-    return res.json({
-      created: false,
-      message: "Já existe uma sala com esse nome!",
-    });
-  }
-
-  const room = {
-    name: roomname,
-    players: players,
-    owner: id,
-    isStarted: isStarted,
-    time: time,
-    curTime: curTime,
-    questions: questionslist,
-    curQuestion: 0,
-  };
-
-  req.session.set("player", player);
-
-  await req.session.save();
-
-  rooms.push(room);
-
-  return res.json({ created: true, message: "Sala criada!" });
-});

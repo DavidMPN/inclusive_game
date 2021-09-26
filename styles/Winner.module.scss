@@ -1,0 +1,50 @@
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.players_list{
+    margin: 1rem 0;
+    border-radius: 6px;
+    max-width: 800px;
+    width: 100%;
+    flex: 1;
+
+    .players {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 1rem;
+        .player {
+            width: 100%;
+            background-color: #bbb;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            height: 30%;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        .winner {
+            background-color: green;
+            width: 50%;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            height: 30%;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+    }
+
+}

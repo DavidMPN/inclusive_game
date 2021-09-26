@@ -1,5 +1,5 @@
-import rooms from "../../../data/rooms";
-import withSession from "../../../lib/session";
+import rooms from "../data/rooms";
+import withSession from "../lib/session";
 
 export default withSession(async (req, res) => {
   const { roomname } = req.body;

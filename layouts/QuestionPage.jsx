@@ -12,13 +12,9 @@ export default function QuestionPage({ question, room }) {
 
   return (
     <div className={styles.container}>
-      <SettingsMenu />
-
-      <Header />
-
       <main>
         <Question text={question.question} />
-        <Options texts={[question.A, question.B, question.C, question.D]} onCheck={setChecked} />
+        <Options texts={[question.A, question.B, question.C, question.D]} room={room} />
       </main>
 
       <Footer room={room} checked={checked} />

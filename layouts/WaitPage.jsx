@@ -4,16 +4,21 @@ import axios from "axios";
 
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { MdContentCopy } from 'react-icons/md';
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import { socketContext } from "../context/socket";
 
 // import { AiOutlineMinus } from 're'
 
-export default function WaitPage({data, room}) {
+export default function WaitPage({data, room, owner}) {
+    const { socket } = useContext(socketContext);
+
     const [ copy, setCopy ] = useState("")
-  
+    const [gameTime , setTempoJogo] = useState(30)
+    const [questionsAmount , setQuestionsAmount] = useState(10)
+
       return (
         <div className = {styles.container}>
-            <NavBar/>
             <main>
                 <span className={styles.copyContainer}>
                     {room}
@@ -29,24 +34,42 @@ export default function WaitPage({data, room}) {
                     {copy}
                 </span>
                 {
-                    data.owner &&
+                    owner &&
                     <>
                     <div className = {styles.settings}>
+                    <label>Tempo de resposta
                         <div className = {styles.game_time}>
-                            <button ><AiOutlineMinus color="blue" size={25}/></button>
-                            <h3>25</h3>
-                            <button ><AiOutlinePlus color = "blue" size={25}/></button>
+                            <button onClick={() => {
+                                if (gameTime-1 > 0){
+                                    setTempoJogo(gameTime - 1)
+                                }
+                            }}><AiOutlineMinus color="blue" size={25}/></button>
+                            <h3>{gameTime}</h3>
+                            <button onClick={() => setTempoJogo(gameTime +1)}><AiOutlinePlus color = "blue" size={25}/></button>
                         </div>
+                    </label>
+                    <label> Quantidade de perguntas
                         <div className = {styles.game_time}>
-                            <button ><AiOutlineMinus color="blue" size={25}/></button>
-                            <h3>35</h3>
-                            <button ><AiOutlinePlus color = "blue" size={25}/></button>
+                            <button onClick={() => {
+                                if (questionsAmount-1 > 0){
+                                    setQuestionsAmount(questionsAmount - 1)
+                                }
+                            }}><AiOutlineMinus color="blue" size={25} /></button>
+                            <h3>{questionsAmount}</h3>
+                            <button onClick={() => {
+                                if (questionsAmount+1 < data.maxQuestion){
+                                    setQuestionsAmount(questionsAmount + 1)
+                                }
+                            }}><AiOutlinePlus color = "blue" size={25}/></button>
                         </div>
+                    </label>
                         <button 
                         className={styles.startBtn} 
-                        onClick={ async () => { 
-                            await axios.post("/api/room/start", { roomname: room });
-                        }}
+                        onClick={ 
+                            () => {
+                                socket.emit("start", { roomname: room, time: gameTime, questions_num: questionsAmount });
+                            }
+                        }
                         >
                             Começar
                         </button>

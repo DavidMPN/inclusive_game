@@ -1,34 +1,29 @@
 import styles from "../styles/Footer.module.scss";
-import { useEffect, useState } from "react";
-import useSWR from "swr";
-import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { socketContext } from "../context/socket";
 
 export default function Options({ room, checked }) {
-  const { data, error } = useSWR(
-    "/api/room/timer",
-    async (url) => {
-      const response = await axios.post(url, { roomname: room });
-      return response.data;
-    },
-    { refreshInterval: 3000 }
-  );
+  const [ initialTimer, setInitialTimer ] = useState(null);
+  const [ timer, setTimer ] = useState(null);
 
-  const initialTimer = data?.time;
-  const [ timer, setTimer ] = useState();
+  const { socket } = useContext(socketContext);
   
   useEffect(() => {
-    axios.post("/api/room/timer", { roomname: room }).then(response => setTimer(response.data.curTime));
-  }, [room]);
+    if(socket) {
+      socket.on("initialTimer", (initialTimer) => {
+        setInitialTimer(initialTimer);
+      })
 
-  useEffect(() => { 
-    if (timer > 0) setTimeout(() => {setTimer(timer - 1)}, 1000);
-    else {
-      if(data?.response) {
-        axios.post("/api/room/timer", { roomname: room, response: checked }).then(res => console.log(res.data));
-      }
+      socket.on("timer", (curtime) => {
+        setTimer(curtime);
+      })
     }
-  }, [checked, data, room, timer]);
-  
+  }, [socket]);
+
+  if(!initialTimer || !timer) {
+    return <h1>Carregando...</h1>
+  }
+
   return (
     <footer className={styles.timer}>
       <div className={styles.bartimercontainer}>

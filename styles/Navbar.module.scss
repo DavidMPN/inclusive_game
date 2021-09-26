@@ -1,0 +1,27 @@
+.navbar {
+    max-width: 1400px;
+    width: 100%;
+    margin: .5rem auto;
+
+    display: flex;
+    padding: 0 3rem;
+}
+
+.navitem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+.navitem:first-child {
+    justify-content: flex-start;
+}
+
+.navitem:last-child {
+    justify-content: flex-end;
+}

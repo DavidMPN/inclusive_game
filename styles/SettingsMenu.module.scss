@@ -1,9 +1,74 @@
 .inclusive_menu{
-    height: 500px;
+    // height: 500px;
+    margin: 0 2rem;
     width: 500px;
-    background-color:whitesmoke;
+    background-color:#fff;
 
     border-radius: 30px;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border-bottom: 1px solid #ddd;
+
+        padding: .1rem 2rem;
+
+        .space {
+            width: 35px;
+            height: 38px;
+        }
+    }
+
+    main {
+        padding: 1.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        label {
+            font-size: 1.3rem;
+            text-align: center;
+            width: 220px;
+
+            .stepper {
+                margin: 5px 0 15px;
+                display: flex;
+                justify-content: space-around;
+                
+                border: 1px solid var(--checked-color);
+                border-radius: 5px;
+                
+                width: 220px;
+
+                h3 {
+                    margin: 10px 0;
+                }
+
+                > :first-child {
+                    border-right: 1px solid var(--checked-color);
+                }
+
+                > :last-child { 
+                    border-left: 1px solid var(--checked-color);
+                }
+
+                > * {
+                    flex: 1;
+                    text-align: center;
+                }
+            }
+        }
+
+        .colormenu {
+            display: flex;
+            justify-content: space-between;
+
+            margin: 5px 0;
+        }
+
+    }
 
 }
 
@@ -18,4 +83,5 @@
     left: 0;
     background-color: rgba($color: black, $alpha: 0.3);
     display: none;
+    z-index: 5;
 }

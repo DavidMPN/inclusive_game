@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "fs": "0.0.1-security",
     "next": "^11.1.0",
     "next-iron-session": "^4.2.0",
     "react": "17.0.2",
@@ -17,7 +18,10 @@
     "react-hook-form": "^7.14.2",
     "react-icons": "^4.2.0",
     "sass": "^1.38.1",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0",
     "swr": "^1.0.0",
+    "use-sound": "^4.0.1",
     "uuidv4": "^6.2.12"
   },
   "devDependencies": {

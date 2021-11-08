@@ -3,35 +3,49 @@ import { useRouter } from "next/dist/client/router";
 import styles from '../styles/Index.module.scss'
 
 import NavBar from "../components/NavBar";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { io } from "socket.io-client";
+import { socketContext } from "../context/socket";
+
 
 export default function Home() {
     const [ roomname,   setRoomname   ] = useState("");
     const [ playername, setPlayername ] = useState("");
+    
+    const { socket } = useContext(socketContext)
 
     const router = useRouter();
+    
+    useEffect(() => {
+        if (socket) {
+            socket.on('created', ({ wasCreated, room }) => {
+                if(wasCreated) {
+                    router.push(`/${room}`);
+                } else {
+                    alert("Algo deu errado!");
+                }
+            });
+
+            socket.on('joined', ({ status, room }) => {
+                if(status === "Entrou") {
+                    router.push(`/${room}`)
+                } else {
+                    alert(status);
+                }
+            })
+        }
+    }, [socket]);
 
     async function submitJoin(data) {
-        const res = await axios.post("api/room/join", data);
-        console.log(res, data);
-
-        if (res.data.join) {
-            router.push(`/${data.roomname}`);
-        }
+        socket.emit("join", data);
     }
-
+    
     async function submitCreate(data) {
-        const res = await axios.post("api/room/create", data);
-        console.log(res, data);
-
-        if (res.data.created) {
-            router.push(`/${data.roomname}`);
-        }
+        socket.emit("create", data);
     }
 
     return (
         <div className={styles.container}>
-            <NavBar />
             <div className={styles.formularios}>
                 <form className={styles.form} onSubmit={e => e.preventDefault()}>
                     <label>

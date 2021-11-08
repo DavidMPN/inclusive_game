@@ -5,7 +5,7 @@
     .option {
       padding: 1rem 2rem;
       cursor: pointer;
-      height: 4.5rem;
+      min-height: 4.5rem;
     
       background-color: white;
     
@@ -46,4 +46,15 @@
         border-color: white;
       }
     }
+
+    .right {
+      background-color: var(--right-color);
+      border: 2px solid var(--right-color);
+    }
+
+    .wrong {
+      background-color: var(--wrong-color);
+      border: 2px solid var(--wrong-color);
+    }
+
   }

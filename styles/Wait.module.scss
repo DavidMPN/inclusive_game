@@ -1,7 +1,6 @@
 .container{
     display: flex;
-    min-height: 100vh;
-    width: 100vw;
+    min-height: calc(100vh - 180px);
     align-items: center; 
     flex-direction: column;
 
@@ -34,7 +33,13 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-
+        align-items: flex-end;
+        
+        label {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
         .game_time, .startBtn {
             display: flex;
             align-items: center;
@@ -59,6 +64,9 @@
                 padding: 1rem;
                 width: 100%;
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
 
@@ -77,6 +85,10 @@
             font-weight: 600;
         }
 
+        @media (max-width: 800px) {
+            flex-direction: column;
+            align-items: center;
+        }
     }
 }
 
@@ -97,18 +109,18 @@
         width: 100%;
         align-items: center;
         // flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         flex-wrap: wrap;
         padding: 1rem;
         .player {
             // flex: 1;
             width: 100%;
-            // min-width: calc(25% - 1rem);
+            max-width: 500px;
             background-color: #bbb;
             color: white;
             font-size: 2rem;
             text-align: center;
-            height: 30%;
+            min-height: 30%;
             border-radius: 1rem;
             padding: 1rem;
             margin: 1rem;

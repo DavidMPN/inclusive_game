@@ -28,7 +28,7 @@ const questions = [
         D: "Construir uma interface de forma que as informações aparecem de forma aleatório, para o usuário cada vez que for utilizar o sistema ter uma experiência diferente ",
         Correct: "A"
     }, {
-        question: "**Pergunta ambígua, explicar oq  uequer** Qual foi a primeira deficiência imposta pela sociedade?",
+        question: "Qual foi a primeira deficiência imposta pela sociedade?",
         A: "O automóvel",
         B: "O computador",
         C: "A prensa",
@@ -38,7 +38,7 @@ const questions = [
         question: "Quando se pensa em inclusão em um software, quem se beficia",
         A: "Pessoas com algum tipo de deficiência",
         B: "Usuários de tal programa em geral",
-        C: "Motores de buscas",
+        C: "Motores de busca",
         D: "Todas as opções acima",
         Correct: "D"
     }, {
@@ -48,6 +48,48 @@ const questions = [
         C: "2 níveis",
         D: "Arco",
         Correct: "B"
+    }, {
+        question: "Baseadas nas interpretações de Kandinsky (1996), Feldman (2001), Medeiros Filho et al (2015) e Farina, Perez e Bastos (2006), quais são o significados psicológicos e simbólicos da cor preta:",
+        A: "Paz, pureza e inocência",
+        B: "Movimento, estímulo e espontaneidade",
+        C: "Tristeza, descontração e violência",
+        D: "Morte, luto e ocultismo",
+        Correct: "D"
+    }, {
+        question: "Baseadas nas interpretações de Kandinsky (1996), Feldman (2001), Medeiros Filho et al (2015) e Farina, Perez e Bastos (2006), qual a cor que indica tristeza, prosperidade, nobreza e respeito:",
+        A: "Marrom",
+        B: "Roxo",
+        C: "Amarelo",
+        D : "Cinza",
+        Correct : "B" 
+    },{
+        question: "Baseadas nas interpretações de Kandinsky (1996), Feldman (2001), Medeiros Filho et al (2015) e Farina, Perez e Bastos (2006), qual a cor que é associada a emoções fortes, como paixão, amor, desejo, orgulho, violência e agressividade:",
+        A: "Laranja",
+        B: "Amarelo",
+        C: "Vermelho",
+        D: "Rosa",
+        Correct: "C"
+    },{
+        question: "A décima heurística de usabilidade para design de interface de usuário, fala sobre:",
+        A: "Controle e liberdade do usuário, usuário costumam realizar ações por engano, eles precisam de um método de desfazer tal erro",
+        B: "Consistência e padrões, usuários não devem de perguntar se palavras, situações ou ações diferentes significam a mesma coisa, siga convenções da plataforma e indústria",
+        C: "Ajuda e documentação, o ideal é seu sistema não precisa de explicação adicional, mas talvez seja necessário fornecer documentação sobre o mesmo",
+        D: "Prevenção de erros, boas mensagens de erros são importantes, mas sempre que puder elimine as condições propensas a erros ou verifique-as e apresente uma opção de confirmação",
+        Correct: "C"
+    },{
+        question: "Ao desenvolver uma interface destinada para adolescentes, é uma boa escolha::",
+        A: "Muitos elementos textuais",
+        B: "Design adaptado para aparelhos móveis",
+        C: "Fontes pequenas, pois possibilitam que haja mais conteúdo na tela",
+        D: "Animações complexas e interessantes, mesmo que tornem o site lento",
+        Correct: "B"
+    },{
+        question: "Uma ferramenta de UX Design pode ser útil para:",
+        A: "Entender as maiores dificuldades sofridas pelos usuários do sistema",
+        B: "Descobrir por quais partes do sistema os usuários mais se interessam",
+        C: "Adaptar o software para acatar às necessidades de idosos e portadores de deficiências",
+        D: "Todas as anteriores",
+        Correct: "D"
     }
 ]
 

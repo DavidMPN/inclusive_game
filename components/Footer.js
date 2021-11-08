@@ -2,11 +2,15 @@ import styles from "../styles/Footer.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { socketContext } from "../context/socket";
 
+import useSound from "use-sound";
+
 export default function Options({ room, checked }) {
   const [ initialTimer, setInitialTimer ] = useState(null);
   const [ timer, setTimer ] = useState(null);
 
   const { socket } = useContext(socketContext);
+
+  const [ playClick ] = useSound("/click.mp3", { volume: 0.7 });
   
   useEffect(() => {
     if(socket) {
@@ -16,9 +20,13 @@ export default function Options({ room, checked }) {
 
       socket.on("timer", (curtime) => {
         setTimer(curtime);
+
+        if(playClick && curtime <= 5 && curtime > 0) {
+          playClick();
+        }
       })
     }
-  }, [socket]);
+  }, [playClick, socket]);
 
   if(!initialTimer || !timer) {
     return <h1>Carregando...</h1>
